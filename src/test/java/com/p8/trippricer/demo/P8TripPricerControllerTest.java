@@ -33,7 +33,7 @@ public class P8TripPricerControllerTest {
 
     }
     @Test
-    public void tripPricerControllerResponseOK () throws Exception {
+    public void tripPricerControllerGetPrice () throws Exception {
 
         String apiKey="test-server-api-key";
         UUID attractionId=UUID.randomUUID();
@@ -46,17 +46,13 @@ public class P8TripPricerControllerTest {
                 .andExpect(status().isOk());
     }
     @Test
-    public void tripPricerControllerApiKeyEmpty () throws Exception {
+    public void tripPricerControllerGetProviderName () throws Exception {
 
         String apiKey="test-server-api-key";
-        UUID attractionId=UUID.randomUUID();
         int adults=2;
-        int children=1;
-        int nightsStay=5;
-        int rewardsPoints=5;
 
-        mockMvc.perform(get("/getPrice?apiKey="+apiKey+"&attractionId=" + attractionId+"&adults=" + adults+"&children=" + children+"&nightsStay=" + nightsStay+"&rewardsPoints=" + rewardsPoints))
-                .andExpect(status().isBadRequest());
+        mockMvc.perform(get("/getProviderName?apiKey="+apiKey+"&adults=" + adults))
+                .andExpect(status().isOk());
     }
 
 }
